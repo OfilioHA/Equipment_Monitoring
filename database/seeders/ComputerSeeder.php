@@ -15,16 +15,25 @@ class ComputerSeeder extends Seeder
      */
     public function run()
     {
-        $ips = ['3'];
         $mask = '255.255.255.0';
+        $subnet = '0';
 
-        foreach($ips as $ip){
-            $ipReal = "192.168.0.{$ip}";
-            $computer = new Computer([
-                "ip" => $ipReal,
-                "mask" => $mask
-            ]);
-            $computer->save();
+        $computers = [
+            [
+                'ip' => '3',
+            ],
+            [
+                'ip' => '8',
+                'username' => 'ofilio',
+                'password' => '123qwe'
+            ]
+        ];
+
+        foreach($computers as $computer){
+            $computer['ip'] = "192.168.{$subnet}.{$computer['ip']}";
+            $computer['mask'] = $mask;
+            (new Computer($computer))->save();
         }
+
     }
 }

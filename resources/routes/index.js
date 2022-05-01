@@ -18,21 +18,7 @@ export const router = createRouter({
         },
         {
             path: '/',
-            component: DefaultLayout,
-            children: [
-                {
-                    path: '',
-                    redirect: '/home'
-                },
-                {
-                    path: '/home',
-                    component: Home
-                },
-                {
-                    path: '/devices',
-                    component: DevicesList
-                }
-            ]
+            component: Home
         },
         {
             path: "/:catchAll(.*)",

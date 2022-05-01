@@ -19,6 +19,7 @@ class ComputerController extends Controller
             $process = new Process(['ping','-c',1, $computer['ip']]);
             $process->run();
             $attributes['active'] = $process->isSuccessful();
+            $attributes['commands'] = $computer->commands;
             $process->stop();
             $list[] = $attributes;
         }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('ip', 15);
             $table->string('mask', 15);
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

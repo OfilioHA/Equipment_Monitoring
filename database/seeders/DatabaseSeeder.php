@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Command;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ComputerSeeder::class
+            CommandSeeder::class,
+            ComputerSeeder::class,
+            ComputerCommandSeeder::class
         ]);
         \App\Models\User::factory(1)->create();
     }

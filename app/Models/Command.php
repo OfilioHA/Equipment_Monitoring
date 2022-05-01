@@ -9,6 +9,8 @@ class Command extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function computers(){
         return $this->belongsToMany(Computer::class);
     }

@@ -1,16 +1,20 @@
 <template>
-  <div class="grid grid-nogutter justify-content-center">
-    <div class="col-11 md:col-8">
+    <div class="col-11 md:col-6">
       <DataTable 
         :value="rows"  
         :rows="5"
         :loading="loading"
+        v-model:expandedRows="expandedRows"
         responsiveLayout="scroll" 
         dataKey="id" 
         removableSort
-        rowHover 
+        :rowHover="false"
         paginator
         >
+            <Column 
+                :expander="true"
+                headerStyle="width: 3rem" 
+            />
             <Column 
                 header="IP" 
                 field="ip" 
@@ -34,9 +38,11 @@
                 </Badge>
               </template>
             </Column>
+            <template #expansion="slotProps">
+              <CommandButtons :commands="slotProps.data.commands" />
+            </template>
       </DataTable>
     </div>
-  </div>
 </template>
 
 <script>
@@ -44,17 +50,20 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Badge from "primevue/badge";
 import { onMounted, ref } from "vue";
+import CommandButtons from "../commands/Buttons";
 import { useFetch } from "../../libs/useFetch";
 
 export default {
   components: {
     DataTable,
     Column,
-    Badge
+    Badge,
+    CommandButtons
   },
   setup() {
     const rows = ref([]);
     const loading = ref(false);
+    const expandedRows = ref([]);
 
     onMounted(async () => {
       const { data } = await useFetch('computers/list', loading);
@@ -64,6 +73,7 @@ export default {
 
     return {
       rows,
+      expandedRows,
       loading
     };
   },

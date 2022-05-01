@@ -1,5 +1,5 @@
 <template>
-  <div class=" h-full grid grid-nogutter justify-content-center align-items-center">
+  <div class="h-full grid grid-nogutter justify-content-center align-items-center">
     <div class="md:col-3">
       <Form />
     </div>

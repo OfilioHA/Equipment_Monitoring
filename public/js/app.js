@@ -19662,8 +19662,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var primevue_datatable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/datatable */ "./node_modules/primevue/datatable/datatable.esm.js");
 /* harmony import */ var primevue_column__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/column */ "./node_modules/primevue/column/column.esm.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _libs_useFetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../libs/useFetch */ "./resources/libs/useFetch.js");
+/* harmony import */ var primevue_badge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/badge */ "./node_modules/primevue/badge/badge.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _libs_useFetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../libs/useFetch */ "./resources/libs/useFetch.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19674,15 +19675,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     DataTable: primevue_datatable__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Column: primevue_column__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Column: primevue_column__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Badge: primevue_badge__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   setup: function setup() {
-    var rows = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)([]);
-    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var rows = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)([]);
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var _yield$useFetch, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -19690,7 +19693,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return (0,_libs_useFetch__WEBPACK_IMPORTED_MODULE_4__.useFetch)('computers/list', loading);
+              return (0,_libs_useFetch__WEBPACK_IMPORTED_MODULE_5__.useFetch)('computers/list', loading);
 
             case 2:
               _yield$useFetch = _context.sent;
@@ -19705,7 +19708,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     })));
     return {
-      rows: rows
+      rows: rows,
+      loading: loading
     };
   }
 });
@@ -19931,11 +19935,14 @@ var _hoisted_2 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Column");
 
+  var _component_Badge = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Badge");
+
   var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DataTable, {
     value: $setup.rows,
     rows: 5,
+    loading: $setup.loading,
     responsiveLayout: "scroll",
     dataKey: "id",
     removableSort: "",
@@ -19951,6 +19958,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         header: "Máscara",
         field: "mask",
         sortable: ""
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Column, {
+        header: "Estado",
+        field: "active",
+        sortable: ""
+      }, {
+        body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+          var data = _ref.data;
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Badge, {
+            severity: data.active ? 'success' : 'danger'
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.active ? 'Conectado' : 'Sin conexión'), 1
+              /* TEXT */
+              )];
+            }),
+            _: 2
+            /* DYNAMIC */
+
+          }, 1032
+          /* PROPS, DYNAMIC_SLOTS */
+          , ["severity"])];
+        }),
+        _: 1
+        /* STABLE */
+
       })];
     }),
     _: 1
@@ -19958,7 +19990,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["value"])])]);
+  , ["value", "loading"])])]);
 }
 
 /***/ }),
@@ -21070,6 +21102,63 @@ const ToastSeverities = {
     ERROR: 'error',
     SUCCESS: 'success'
 };
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/badge/badge.esm.js":
+/*!**************************************************!*\
+  !*** ./node_modules/primevue/badge/badge.esm.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var script = {
+    name: 'Badge',
+    props: {
+        value: null,
+        severity: null,
+        size: null
+    },
+    computed: {
+        containerClass() {
+            return this.$slots.default ? 'p-overlay-badge': this.badgeClass;
+        },
+        badgeClass() {
+            return ['p-badge p-component', {
+                'p-badge-no-gutter': this.value && String(this.value).length === 1,
+                'p-badge-dot': !this.value && !this.$slots.default,
+                'p-badge-lg': this.size === 'large',
+                'p-badge-xl': this.size === 'xlarge',
+                'p-badge-info': this.severity === 'info',
+                'p-badge-success': this.severity === 'success',
+                'p-badge-warning': this.severity === 'warning',
+                'p-badge-danger': this.severity === 'danger'
+            }];
+        }
+    }
+};
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.badgeClass)
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {}, () => [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.value), 1)
+    ])
+  ], 2))
+}
+
+script.render = render;
 
 
 

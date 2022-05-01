@@ -4,6 +4,7 @@
       <DataTable 
         :value="rows"  
         :rows="5"
+        :loading="loading"
         responsiveLayout="scroll" 
         dataKey="id" 
         removableSort
@@ -20,6 +21,19 @@
                 field="mask" 
                 sortable 
             />
+            <Column
+                header="Estado" 
+                field="active" 
+                sortable
+            >
+              <template #body="{data}">
+                <Badge
+                  :severity="data.active ? 'success' : 'danger'"
+                >
+                {{data.active ? 'Conectado' : 'Sin conexión'}}
+                </Badge>
+              </template>
+            </Column>
       </DataTable>
     </div>
   </div>
@@ -28,6 +42,7 @@
 <script>
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
+import Badge from "primevue/badge";
 import { onMounted, ref } from "vue";
 import { useFetch } from "../../libs/useFetch";
 
@@ -35,6 +50,7 @@ export default {
   components: {
     DataTable,
     Column,
+    Badge
   },
   setup() {
     const rows = ref([]);
@@ -48,6 +64,7 @@ export default {
 
     return {
       rows,
+      loading
     };
   },
 };

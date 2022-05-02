@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComputerController;
-
+use App\Http\Controllers\CommandController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('computers')->group(function(){
     Route::get('/list', [ComputerController::class, 'list']);
+});
+
+Route::prefix('commands')->group(function(){
+    Route::get('/execute/{id}', [CommandController::class, 'execute']);
 });

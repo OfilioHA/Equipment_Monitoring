@@ -10,7 +10,7 @@ class Computer extends Model
     use HasFactory;
 
     public function commands(){
-        return $this->belongsToMany(Command::class);
+        return $this->belongsToMany(Command::class)->withPivot('id');;
     }
 
     public function logs(){

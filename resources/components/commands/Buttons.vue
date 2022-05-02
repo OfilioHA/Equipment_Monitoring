@@ -4,10 +4,11 @@
     <Divider />
     <div>
       <Button 
-        v-for="(commmand, index) in commands"
+        v-for="(command, index) in commands"
         :key="index"
-        :label="commmand.line" 
+        :label="command.line" 
         class="p-button-outlined"
+        @click="execute(command)"
       /> 
     </div>
   </div>
@@ -16,7 +17,8 @@
 <script>
 import Button from "primevue/button";
 import Divider from "primevue/divider";
-import { toRefs } from "vue";
+import { ref, toRefs } from "vue";
+import { useFetch } from "../../libs/useFetch";
 
 export default {
   components: {
@@ -30,9 +32,18 @@ export default {
   },
   setup(props) {
     const { commands } = toRefs(props);
-  
+    const loading = ref(false);
+
+    const execute = async (command)=>{
+      const { id } = command.pivot;
+      const { data } = await useFetch(`commands/execute/${id}`, loading);
+      console.log(data);
+
+    } 
+
     return {
-      commands
+      commands,
+      execute
     }
   },
 };

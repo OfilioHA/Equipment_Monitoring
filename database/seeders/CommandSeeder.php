@@ -19,6 +19,10 @@ class CommandSeeder extends Seeder
             [
                 'line' => 'pwd',
                 'parameters' => 0
+            ],
+            [
+                'line' => 'ip a',
+                'parameters' => 0
             ]
         ];
         foreach($commands as $command){

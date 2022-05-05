@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ComputerCommand;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 
@@ -25,9 +26,18 @@ class CommandController extends Controller
                 $command->line
             ],
         );
-
+        
         $process->run();
-        dump($process->getOutput());
-        dump($process->getCommandLine());
+
+        $history = new History([
+            'output' => $process->getOutput(),
+            'successful' => $process->isSuccessful()
+        ]);
+
+        $history->command()->associate($command);
+        $history->computer()->associate($computer);
+        $history->save();
+
+        return response()->json($history);
     }
 }

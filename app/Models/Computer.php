@@ -16,4 +16,8 @@ class Computer extends Model
     public function logs(){
         return $this->hasMany(Log::class);
     }
+
+    public function history(){
+        return $this->hasMany(History::class);
+    }
 }

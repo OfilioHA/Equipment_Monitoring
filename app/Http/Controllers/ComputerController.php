@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use App\Models\Computer;
+use App\Models\History;
 
 class ComputerController extends Controller
 {
@@ -25,5 +26,17 @@ class ComputerController extends Controller
         }
 
         return $list;
+    }
+
+    public function history(){
+        $list = [];
+
+        foreach(History::all() as $history){
+            $attributes = $history->getAttributes();
+            $attributes['ip'] = $history->computer()->get()->first()->ip;
+            $list[] = $attributes;
+        }
+
+        return response()->json($list);
     }
 }

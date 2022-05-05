@@ -20,7 +20,7 @@ class ComputerSeeder extends Seeder
 
         $computers = [
             [
-                'ip' => '8',
+                'ip' => '3',
                 'username' => 'ofilio',
                 'password' => '123qwe'
             ]

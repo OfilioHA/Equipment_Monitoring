@@ -14,4 +14,8 @@ class Command extends Model
     public function computers(){
         return $this->belongsToMany(Computer::class);
     }
+
+    public function history(){
+        return $this->hasMany(History::class);
+    }
 }

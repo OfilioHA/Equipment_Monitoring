@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('computers')->group(function(){
     Route::get('/list', [ComputerController::class, 'list']);
+    Route::get('/history', [ComputerController::class, 'history']);
 });
 
 Route::prefix('commands')->group(function(){

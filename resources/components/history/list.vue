@@ -1,6 +1,5 @@
 <template>
   <div class="col-11 md:col-6 px-2">
-    <Form :show="dialog" />
     <DataTable
       :value="rows"
       :rows="5"
@@ -14,22 +13,22 @@
     >
       <template #header>
         <TablesHeader
-          title="Dispositivos" 
+          title="Historial" 
           :dialog="dialog"
         />
       </template>
       <Column :expander="true" headerStyle="width: 3rem" />
       <Column header="IP" field="ip" sortable />
-      <Column header="Máscara" field="mask" sortable />
-      <Column header="Estado" field="active" sortable>
+      <Column header="Creado" field="created_at" sortable />
+      <Column header="Resultado" field="successful" sortable>
         <template #body="{ data }">
-          <Badge :severity="data.active ? 'success' : 'danger'">
-            {{ data.active ? "Conectado" : "Sin conexión" }}
+          <Badge :severity="data.successful ? 'success' : 'danger'">
+            {{ data.successful ? "Exitoso" : "Fallido" }}
           </Badge>
         </template>
       </Column>
       <template #expansion="slotProps">
-        <CommandButtons :commands="slotProps.data.commands" />
+        <p>{{slotProps.data.output}}</p>
       </template>
     </DataTable>
   </div>
@@ -39,22 +38,16 @@
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Badge from "primevue/badge";
-import tablesHeader from "../utils/tablesHeader";
-import { onMounted, ref } from "vue";
-import CommandButtons from "../commands/Buttons";
-import { useFetch } from "../../libs/useFetch";
 import TablesHeader from "../utils/tablesHeader";
-import Form from "./form";
+import { onMounted, ref } from "vue";
+import { useFetch } from "../../libs/useFetch";
 
 export default {
   components: {
     DataTable,
     Column,
     Badge,
-    CommandButtons,
-    tablesHeader,
     TablesHeader,
-    Form
 },
   setup() {
     const dialog = ref({state: false});
@@ -63,7 +56,7 @@ export default {
     const expandedRows = ref([]);
 
     onMounted(async () => {
-      const { data } = await useFetch("computers/list", loading);
+      const { data } = await useFetch("computers/history", loading);
       rows.value = data;
     });
 

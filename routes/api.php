@@ -27,3 +27,5 @@ Route::prefix('computers')->group(function(){
 Route::prefix('commands')->group(function(){
     Route::get('/execute/{id}', [CommandController::class, 'execute']);
 });
+
+Route::get('/monitoring/{id}', [ComputerController::class, 'monitoring']);

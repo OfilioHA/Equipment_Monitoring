@@ -1,6 +1,6 @@
 <template>
     <DefaultLayout>
-        <main class="grid grid-nogutter justify-content-around">
+        <main class="grid justify-content-around mx-2">
             <Devices />
             <History />
         </main>

@@ -8,6 +8,7 @@ import Home from "../components/home";
 import DevicesList from "../components/devices/list";
 import NotFound from "../components/utils/NotFound";
 import DefaultLayout from "../components/layouts/Default";
+import Monitoring from "../components/monitoring";
 
 export const router = createRouter({
     history: createWebHistory(),
@@ -27,6 +28,10 @@ export const router = createRouter({
         {
             path: "/404",
             component: NotFound
+        },
+        {
+            path: "/monitoring/:id",
+            component: Monitoring
         }
     ]
 })

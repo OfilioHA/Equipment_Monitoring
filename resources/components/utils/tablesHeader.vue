@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h3>
+    <h2>
         <em class="pi pi-fw pi-server"></em>
         {{title}}
-    </h3>
+    </h2>
     <Divider />
-    <div>
+    <div class="tb-header-bottom">
         <Button 
+            v-if="dialog != undefined"
             icon="pi pi-plus"
             label="Agregar"
             @click="toggleDialog"
@@ -48,3 +49,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+.tb-header-bottom{
+    height: 36.4px;
+}
+</style>

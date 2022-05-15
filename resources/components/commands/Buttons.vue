@@ -6,7 +6,7 @@
       <Button 
         v-for="(command, index) in commands"
         :key="index"
-        :label="command.line" 
+        :label="command.nickname" 
         class="p-button-outlined"
         @click="execute(command)"
       /> 
@@ -37,7 +37,6 @@ export default {
     const execute = async (command)=>{
       const { id } = command.pivot;
       const { data } = await useFetch(`commands/execute/${id}`, loading);
-      console.log(data);
 
     } 
 

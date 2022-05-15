@@ -1,9 +1,12 @@
 <template>
   <header class="mb-5">
-    <MenuBar :model="menu">
-        <template #end>
-            <ConfigMenu />
-        </template>
+    <MenuBar>
+      <template #start>
+        <h2 class="my-0">Sistema de Monitoreo</h2>
+      </template>
+      <template #end>
+        <ConfigMenu />
+      </template>
     </MenuBar>
   </header>
 </template>
@@ -16,7 +19,7 @@ import { ref } from "vue";
 export default {
   components: {
     MenuBar,
-    ConfigMenu
+    ConfigMenu,
   },
   setup() {
     const menu = ref([

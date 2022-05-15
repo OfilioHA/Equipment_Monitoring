@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('line');
             $table->unsignedBigInteger('parameters');
+            $table->string("name");
+            $table->string("nickname");
         });
     }
 

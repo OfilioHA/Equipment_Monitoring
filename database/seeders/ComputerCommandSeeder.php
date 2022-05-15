@@ -17,7 +17,7 @@ class ComputerCommandSeeder extends Seeder
     public function run()
     {
         foreach(Computer::all() as $computer){
-            foreach([1,2] as $command){
+            foreach([1,2,3] as $command){
                 $c = Command::find($command);
                 $computer->commands()->save($c);
             }

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-11 md:col-6 px-2">
+  <div class="col-11 md:col-6">
     <Form :show="dialog" />
     <DataTable
       :value="rows"
@@ -13,10 +13,7 @@
       paginator
     >
       <template #header>
-        <TablesHeader
-          title="Dispositivos" 
-          :dialog="dialog"
-        />
+        <TablesHeader title="Dispositivos" :dialog="dialog" />
       </template>
       <Column :expander="true" headerStyle="width: 3rem" />
       <Column header="IP" field="ip" sortable />
@@ -26,6 +23,13 @@
           <Badge :severity="data.active ? 'success' : 'danger'">
             {{ data.active ? "Conectado" : "Sin conexión" }}
           </Badge>
+        </template>
+      </Column>
+      <Column>
+        <template #body="{ data }">
+          <router-link :to="'/monitoring/' + data.id">
+            <Button icon="pi pi-eye" />
+          </router-link>
         </template>
       </Column>
       <template #expansion="slotProps">
@@ -40,6 +44,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Badge from "primevue/badge";
 import tablesHeader from "../utils/tablesHeader";
+import Button from "primevue/button";
 import { onMounted, ref } from "vue";
 import CommandButtons from "../commands/Buttons";
 import { useFetch } from "../../libs/useFetch";
@@ -51,13 +56,14 @@ export default {
     DataTable,
     Column,
     Badge,
+    Button,
     CommandButtons,
     tablesHeader,
     TablesHeader,
-    Form
-},
+    Form,
+  },
   setup() {
-    const dialog = ref({state: false});
+    const dialog = ref({ state: false });
     const rows = ref([]);
     const loading = ref(false);
     const expandedRows = ref([]);
@@ -71,7 +77,7 @@ export default {
       rows,
       expandedRows,
       loading,
-      dialog
+      dialog,
     };
   },
 };

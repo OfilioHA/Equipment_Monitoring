@@ -18,14 +18,24 @@ class CommandSeeder extends Seeder
         $commands = [
             [
                 'line' => 'pwd',
-                'parameters' => 0
+                'parameters' => 0,
+                'name' => 'Directorio Actual',
+                'nickname' => 'Directorio'
             ],
             [
                 'line' => 'ip a',
-                'parameters' => 0
+                'parameters' => 0,
+                'name' => "Direccion IP",
+                'nickname' => "IP"
+            ],
+            [
+                'line' => 'who',
+                'parameters' => 0,
+                'name' => "Sesiones activas",
+                'nickname' => "Sesiones"
             ]
         ];
-        foreach($commands as $command){
+        foreach ($commands as $command) {
             (new Command($command))
                 ->save();
         }

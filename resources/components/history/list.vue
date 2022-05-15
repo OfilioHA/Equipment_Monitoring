@@ -1,5 +1,5 @@
 <template>
-  <div class="col-11 md:col-6 px-2">
+  <div class="col-11 md:col-6">
     <DataTable
       :value="rows"
       :rows="5"
@@ -14,7 +14,6 @@
       <template #header>
         <TablesHeader
           title="Historial" 
-          :dialog="dialog"
         />
       </template>
       <Column :expander="true" headerStyle="width: 3rem" />
